@@ -118,28 +118,37 @@ function movieThis() {
 //Do-What-It-Says Command
 
 function doWhatItSays() {
-    fs.readFile('random.txt', "utf8", function(error, data){
+    fs.readFile("random.txt", "utf8", function(error, data){
 
 		if (error) {
     		return console.log(error);
-  		}
+  		} else if (!error){
 
-		// Then split it by commas (to make it more readable)
-		var dataArr = data.split(",");
+            var output = data.split(",");
+            action = output[0];
+            value = output[1];
+            // console.log(action);
+            // myTweets()
+          }
+            switch (action) {
+                case "my-tweets":
+                    myTweets();
+                    break;
+    
 
-		// Each command is represented. Because of the format in the txt file, remove the quotes to run these commands. 
-		if (dataArr[0] === "spotify-this-song") {
-            console.log ('hooray')
-			var songcheck = dataArr[1].slice(1, -1);
-			spotifyThisSong(songcheck);
-		} else if (dataArr[0] === "my-tweets") {
-			var tweetname = dataArr[1].slice(1, -1);
-			twitter(tweetname);
-		} else if(dataArr[0] === "movie-this") {
-			var movie_name = dataArr[1].slice(1, -1);
-			movie(movie_name);
-		} 
-		
-  	});
-
-};
+                    // Can't get spotify function to read value variable
+                case "spotify-this-song":
+                console.log (value)
+                console.log("-------------------------")
+                spotifyThisSong(value);
+                    break;
+    
+                    // Can't get movie function to read value variable
+                case "movie-this":
+                    movieThis(value);
+                    break;
+    
+                case "do-what-it-says":
+                    doWhatItSays();
+                    break;
+            }})};

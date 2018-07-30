@@ -19,6 +19,7 @@
   "homepage": "https://github.com/atstay/liri-node-app#readme",
   "dependencies": {
     "dotenv": "^6.0.0",
+    "file-system": "^2.2.2",
     "install": "^0.12.1",
     "node": "^10.7.0",
     "node-spotify-api": "^1.0.7",
